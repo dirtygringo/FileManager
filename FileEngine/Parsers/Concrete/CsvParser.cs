@@ -7,7 +7,7 @@ using FileEngine.Exceptions;
 
 namespace FileEngine.Parsers.Concrete
 {
-    public class CsvParser : IParser  
+    public class CsvParser : IParser   
     {
         public IEnumerable<T> Parse<T>(string filepath) where T : class, new()
         {

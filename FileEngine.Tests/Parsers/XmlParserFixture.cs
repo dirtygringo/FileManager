@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using FileEngine.Parsers;
 using FileEngine.Parsers.Concrete;
 using Moq;
@@ -18,24 +19,24 @@ namespace FileEngine.Tests.Parsers
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsNull()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsNull()
         {
             _filepath = null;
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Record>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Record>>(_filepath));
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsEmpty()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsEmpty()
         {
             _filepath = string.Empty;
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Record>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Record>>(_filepath));
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsInvalid()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsInvalid()
         {
             _filepath = @"C:\Excercise\sample\a.xml";
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Record>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Record>>(_filepath));
         }
 
         [Fact]

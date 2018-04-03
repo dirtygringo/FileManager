@@ -11,7 +11,7 @@ namespace FileEngine.Parsers.Concrete
 {
     public class XmlParser : IParser
     {
-        #region Methods
+        #region Methods 
 
         public IEnumerable<T> Parse<T>(string filepath) where T : class, new()
         {

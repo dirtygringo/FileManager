@@ -6,6 +6,7 @@ using Xunit;
 using FileEngine.Exceptions;
 using FileEngine.Parsers.Concrete;
 using Client.Model;
+using System.IO;
 
 namespace FileEngine.Tests.Parsers
 {
@@ -21,24 +22,24 @@ namespace FileEngine.Tests.Parsers
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsNull()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsNull()
         {
             _filepath = null;
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Data>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Data>>(_filepath));
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsEmpty()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsEmpty()
         {
             _filepath = string.Empty;
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Data>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Data>>(_filepath));
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsWrong()
+        public void Should_ThrowFileNotFoundException_WhenFilepathIsWrong()
         {
             _filepath = @"C:\Excercise\a.csv";
-            Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Data>>(_filepath));
+            Assert.Throws<FileNotFoundException>(() => _sut.Parse<Mock<Data>>(_filepath));
         }
 
         [Fact]
