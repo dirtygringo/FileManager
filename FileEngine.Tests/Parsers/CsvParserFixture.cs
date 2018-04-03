@@ -50,7 +50,14 @@ namespace FileEngine.Tests.Parsers
         }
 
         [Fact]
-        public void Should_ThrowInvalidFileException_WhenHeaderDoesntMatchPropertyName()
+        public void Should_ThrowPropertyNotFoundException_WhenHeaderDoesntMatchPropertyName()
+        {
+            _filepath = @"C:\Excercise\sample3.csv";
+            Assert.Throws<PropertyNotFoundException>(() => _sut.Parse<Mock<Data>>(_filepath));
+        }
+
+        [Fact]
+        public void Should_ThrowInvalidFileException_WhenHeaderColumnLengthMismathchesWithTail()
         {
             _filepath = @"C:\Excercise\sample3.csv";
             Assert.Throws<InvalidFileException>(() => _sut.Parse<Mock<Data>>(_filepath));
