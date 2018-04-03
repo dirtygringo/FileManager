@@ -7,11 +7,11 @@ using FileEngine.Exceptions;
 
 namespace FileEngine.Parsers.Concrete
 {
-    public class CsvParser : IParser 
+    public class CsvParser : IParser  
     {
         public IEnumerable<T> Parse<T>(string filepath) where T : class, new()
         {
-            if (!File.Exists(filepath)) throw new ArgumentException("Invalid file path");
+            if (!File.Exists(filepath)) throw new FileNotFoundException("Invalid file path");
 
             var readLines = File.ReadLines(filepath).ToList();
             if (readLines.Count == default) throw new EmptyFileException("File is empty");
@@ -22,6 +22,8 @@ namespace FileEngine.Parsers.Concrete
             for (int i = 1; i < readLines.Count(); i++)
             {
                 var valuesPerLine = readLines[i].Split(',');
+                if (valuesPerLine.Count() != headers.Count()) throw new InvalidFileException("Invalid csv file");
+
                 var model = new T();
 
                 for (int j = 0; j < valuesPerLine.Count(); j++)

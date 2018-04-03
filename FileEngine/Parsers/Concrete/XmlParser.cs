@@ -15,7 +15,7 @@ namespace FileEngine.Parsers.Concrete
 
         public IEnumerable<T> Parse<T>(string filepath) where T : class, new()
         {
-            if (!File.Exists(filepath)) throw new ArgumentException("Invalid file path");
+            if (!File.Exists(filepath)) throw new FileNotFoundException("Invalid file path");
 
             var list = new List<T>();
             var xDocument = XDocument.Load(filepath);
