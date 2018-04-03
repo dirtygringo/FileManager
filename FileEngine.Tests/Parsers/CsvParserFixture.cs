@@ -49,10 +49,10 @@ namespace FileEngine.Tests.Parsers
         }
 
         [Fact]
-        public void Should_ThrowKeyNotFoundException_WhenHeaderDoesntMatchPropertyName()
+        public void Should_ThrowInvalidFileException_WhenHeaderDoesntMatchPropertyName()
         {
             _filepath = @"C:\Excercise\sample3.csv";
-            Assert.Throws<KeyNotFoundException>(() => _sut.Parse<Mock<Data>>(_filepath));
+            Assert.Throws<InvalidFileException>(() => _sut.Parse<Mock<Data>>(_filepath));
         }
 
         [Fact]

@@ -39,6 +39,8 @@ namespace FileEngine.Parsers.Concrete
             element.Elements().ToList().ForEach(e =>
             {
                 var property = model.GetType().GetPropertyByName(e.Name.LocalName);
+                if (property == null) throw new PropertyNotFoundException("Invalid property name");
+
                 methodInfo = property.GetGetMethod();
                 if (methodInfo.ReturnType.IsArray)
                 {
@@ -59,7 +61,7 @@ namespace FileEngine.Parsers.Concrete
                 }
                 else
                 {
-                    property?.SetPropertyFromString(model, e.Value);
+                    property.SetPropertyFromString(model, e.Value);
                 }
             });
             return model;

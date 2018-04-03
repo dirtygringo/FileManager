@@ -31,7 +31,7 @@ namespace FileEngine.Parsers.Concrete
                     var propertyName = headers[j];
                     var property = model.GetType().GetPropertyByName(propertyName);
 
-                    if (property == null) throw new KeyNotFoundException($"Not valid property name {propertyName}");
+                    if (property == null) throw new PropertyNotFoundException($"Not valid property name {propertyName}");
 
                     property.SetPropertyFromString(model, valuesPerLine[j]);
                 }

@@ -32,10 +32,16 @@ namespace FileEngine.Tests.Parsers
         }
 
         [Fact]
-        public void Should_ThrowArgumentExcepiton_WhenFilepathIsWrong()
+        public void Should_ThrowArgumentExcepiton_WhenFilepathIsInvalid()
         {
             _filepath = @"C:\Excercise\sample\a.xml";
             Assert.Throws<ArgumentException>(() => _sut.Parse<Mock<Record>>(_filepath));
+        }
+
+        [Fact]
+        public void Should_ThrowInvalidFileException_WhenHeaderDoesntMatchPropertyName()
+        {
+
         }
     }
 }
